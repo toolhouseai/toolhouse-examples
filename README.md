@@ -15,7 +15,15 @@ To follow along these examples we've separated them in sub-folders within this r
 Each folder uses a different set of Tools hosted and maintained by Toolhouse.
 
 ## 🛠️ Installation 
-To install (from within the folder where this file lives):
+
+Ensure that you have exported into your environment both Toolhouse and Anthropic API Keys.
+```
+export ANTHROPIC_KEY="your_anthropic_api_key"
+export TOOLHOUSE_BEARER_TOKEN="your_toolhouse_bearer_token"
+```
+
+
+Then, to install (from within the folder where this README file lives):
 
 
 #### With virtual environment (Preferred)
@@ -55,7 +63,7 @@ Writing good tools is a long and time-consuming exercise which requires a lot of
 
 ## Get help
 
-Join us on Discord
+[Join us on Discord](https://discord.gg/xPvyBxhHtu)
 
 
 
