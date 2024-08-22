@@ -1,19 +1,25 @@
 # Building a Customer Support Bot with Anthropic and Toolhouse
 
-Hello, developers! Today, we'll walk through creating a customer support bot using Anthropic's AI and Toolhouse's API management. This bot will assist customers with their headphone-related queries, but only during specific hours. Let's dive in!
+Hello, developers! Today, we'll walk through creating a customer support bot using Anthropic's AI and Toolhouse's tool management platform. This bot will assist customers with their product-related queries, but only during specific hours.
+We achieve this by using 3 tools:
+- Web scraper: This tools lets us get information from the web, about the product we're selling - some amazing headphones
+- Email: This tool lets us send the information to a specified email inbox, if the user desires it.
+- Current time: This tool returns the time and thus whether the bot should respond to the customer (it's a fun constraint to showcase this tool)
+
+Let's dive in!
 
 ## Background
 Our goal is to create a bot that:
 
 - Responds to customer queries concisely.
 - Operates only after 6:00 AM PDT. (ℹ️ feel free to change this value in the system prompt in the agent's code on LINE 21-22)
-- Uses Anthropic for natural language processing and Toolhouse for API management.
+- Uses Anthropic for natural language processing and Toolhouse for tool management.
 
 We'll use Python for this project, leveraging the `anthropic` and `toolhouse` libraries.
 
 ## Setting Up
 First, ensure you have the necessary API keys set as environment variables:
-```
+```bash
 export ANTHROPIC_KEY="your_anthropic_api_key"
 export TOOLHOUSE_BEARER_TOKEN="your_toolhouse_bearer_token"
 ```
@@ -21,7 +27,7 @@ export TOOLHOUSE_BEARER_TOKEN="your_toolhouse_bearer_token"
 
 Let's start by importing the required libraries and initializing our clients:
 
-```
+```python
 import os
 from typing import List
 from anthropic import Anthropic
@@ -42,7 +48,7 @@ th.set_metadata('timezone', '-7')
 ## Defining the System Message
 Next, we define the system message that sets the behavior and constraints for our bot:
 
-```
+```python
 # Define system message for the AI agent
 system_message = """
         IMPORTANT: Be extremely concise in all your answers. Keep it to 280 characters.
@@ -55,7 +61,7 @@ system_message = """
 ## Processing User Queries
 We need a function to handle user queries:
 
-```
+```python
 first_question = True
 
 def process_response(messages):
