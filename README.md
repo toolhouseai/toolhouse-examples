@@ -27,6 +27,13 @@ export TOOLHOUSE_BEARER_TOKEN="your_toolhouse_bearer_token"
 
 Then, to install (from within the folder where this README file lives):
 
+First clone the repo:
+```bash
+git clone https://github.com/toolhouseai/toolhouse-examples.git
+cd toolhouse-examples
+```
+
+### Install the required dependencies
 
 #### With virtual environment (Preferred)
 
