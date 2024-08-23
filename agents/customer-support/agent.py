@@ -53,6 +53,7 @@ def process_response(messages):
                 model="claude-3-5-sonnet-20240620",
                 max_tokens=1024,
                 system=system_message,
+                # Get the tools from toolhouse SDK to perform actions based on the request
                 tools=th.get_tools(),
                 messages=messages
             )

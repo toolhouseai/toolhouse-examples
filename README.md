@@ -2,6 +2,8 @@
 # <img src="https://framerusercontent.com/images/xDisAjh26hdfRjOto5SnUUWvsEQ.svg?scale-down-to=64" width="50" style="position: relative; top: 10px">  Toolhouse Examples
 ## Intro
 Toolhouse is a platform that helps developers integrate tools in their projects, to build powerful AI agents. 
+You can start this journey with only 3 lines of code.
+
 In this repo we'll explore some examples of different ways you can leverage our pre-built tools and create agents that can perform many useful tasks.
 
 ## Examples
@@ -59,9 +61,10 @@ Today's LLM technology doesn't run any code itself. Instead, you can run code ex
 
 Writing good tools is a long and time-consuming exercise which requires a lot of efforts. You have to write definitions of inputs and outputs, robust error handling, handle the infrastructure to host the tool and most importantly effective communication with the model. Every model implements function calling slightly differently. This causes challenges in schema design, logic implementation, and interaction management.
 
-✨ Using Toolhouse - you can use tools that have been written and maintained for you and know that you're going to get the best quality.
+✨ Using Toolhouse - you can use tools that have been written and maintained by developers like you. These tools work with any LLM that supports tool use. As most developers use more than one LLM provider in their deployments, Toolhouse is designed to help you manage your functions across each model.
 
 ## Get help
+Our growing community awaits you: We're looking forward to meet you and while we focus on subjects relevant to Toolhouse, AI or code we're happy to chat about anything.
 
 [Join us on Discord](https://discord.gg/xPvyBxhHtu)
 
