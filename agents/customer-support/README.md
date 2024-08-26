@@ -2,31 +2,30 @@
 
 Hello, developers! Today, we'll walk through creating a customer support bot using Anthropic's AI and Toolhouse's tool management platform. This bot will assist customers with their product-related queries, but only during specific hours.
 
-> 👋 Here's the catch: adding all the super-powers to the chatbot can be achieved with Toolhouse's SDK and 3 lines of code.
+> 👋 Here's the thing: adding all the super-powers to the chatbot can be achieved with Toolhouse's SDK and just **3 lines of code**.
 
 To build this AI agent for customer support, we're going to be using 3 tools:
-- Web scraper: This tools lets us get information from the web, about the product we're selling - some amazing headphones
-- Email: This tool lets us send the information to a specified email inbox, if the user desires it.
-- Current time: This tool returns the time and thus whether the bot should respond to the customer (it's a fun constraint to showcase this tool)
+- [Get page contents](https://app.toolhouse.ai/store/scraper): This tools lets us get information from the web, about the product we're selling - some amazing headphones
+- [Send email](https://app.toolhouse.ai/store/send_email): This tool lets us send the information to a specified email inbox, if the user desires it.
+- [Get current time](https://app.toolhouse.ai/store/current_time): This tool returns the time and thus whether the bot should respond to the customer (this is a fun constraint just to showcase this tool)
 
 Let's dive in!
 
 ## Background
-Our goal is to create a bot that uses LLMs and tools to:
+Our goal is to create an agent that uses LLMs and tools to do this:
 
 - Scrape information from a web source to acquire the knowledge
-- Responds to customer queries concisely.
-- Can email information to an address
-- Operates only after 6:00 AM PDT. (ℹ️ feel free to change this value in the system prompt in the agent's code on LINE 21-22)
-- Uses Anthropic for natural language processing and Toolhouse for tool management
+- Respond to customer queries concisely
+- Email information to an email address
+- Sleep. Yes, we want the agent to operates only after 6:00 AM PDT. (ℹ️ again, this is just a fun constraint that we're using to showcase how LLMs can reason by using our tools. Feel free to change this value in the system prompt in the agent's code on lines 21-22)
 
-We'll use Python for this project, leveraging the `anthropic` and `toolhouse` libraries.
+We'll uses Anthropic for natural language processing, and we'll rely on Toolhouse for tool management. This way, we won't have to write the JSON Schema for the tools, and obviously we won't have to build or even run the tool ourselves. We'll use Python for this project, leveraging the `anthropic` and `toolhouse` libraries.
 
 ## Setting Up
 First, ensure you have the necessary API keys set as environment variables:
 ```bash
-export ANTHROPIC_KEY="your_anthropic_api_key"
-export TOOLHOUSE_BEARER_TOKEN="your_toolhouse_bearer_token"
+export ANTHROPIC_API_KEY="your_anthropic_api_key"
+export TOOLHOUSE_API_KEY="your_toolhouse_api_key"
 ```
 ## Initializing the Project
 Make sure you have installed all dependencies and create your virtual environment as explained in the [main README](https://github.com/toolhouseai/toolhouse-examples/blob/main/README.md) of this repo.
@@ -39,15 +38,10 @@ from typing import List
 from anthropic import Anthropic
 from toolhouse import Toolhouse, Provider
 
-# Load API keys from environment variables
-CLAUDE_API_KEY = os.getenv("ANTHROPIC_KEY")
-TH_TOKEN = os.getenv("TOOLHOUSE_BEARER_TOKEN")
+client = Anthropic()
+th = Toolhouse(provider=Provider.ANTHROPIC)
 
-# Initialize Anthropic and Toolhouse clients
-client = Anthropic(api_key=CLAUDE_API_KEY)
-th = Toolhouse(access_token=TH_TOKEN, provider=Provider.ANTHROPIC)
-
-# Set timezone for the AI Agent - to set its hours of operations.
+# Set timezone for the AI Agent so that it reflects the PT time zone.
 th.set_metadata('timezone', '-7')
 ```
 
@@ -82,7 +76,7 @@ def process_response(messages):
     messages.append({"role": "user", "content": f"{input_question}"})
 ```
 
-You will notice that when we create our first response we pass the Toolhouse SDK `get_tools()` method to inform the LLM that there are tools available to achieve its goals. This matters because it's the simplest and most powerful ways to supercharge LLMs with up to date knowledge and give it the option to perform actions.
+In a moment, you will notice that won't pass a JSON schema when we create our first response. Instead, we pass the `get_tools()` method from the Toolhouse SDK. Toolhouse compiles a JSON schema compatible with Anthropic, complete with prompts and description for the tool and each of its arguments, if present. This matters because you just equipped your LLMs with up to date knowledge, and you gave it the ability to perform actions — all in **just one line of code**.
 
 ```python
     response = client.messages.create(
@@ -97,8 +91,9 @@ You will notice that when we create our first response we pass the Toolhouse SDK
     messages += th.run_tools(response)
 ```
 
+You also noticed that the **tool execution boilerplate is gone.** With Toolhouse, tools are executed in the cloud, and the SDK manages the tool execution and the response handling for you with the `run_tools()` method. Toolhouse is not a framework, so you'll get raw completion objects that you can inspect or further modify if needed. You can also use `run_tools()` if you're running your existing local tools, but we'll leave this for another tutorial.
 
 ## Conclusion
-With this setup, you have a basic customer support bot that leverages Anthropic's AI capabilities and Toolhouse's tools. This bot will respond to customer queries concisely and only during specified hours.
+With this setup, you have a basic customer support bot that leverages Anthropic's AI capabilities and Toolhouse's tools. This bot will respond to customer queries concisely and only during specified hours. What's best is that you actually saved lines of code because Toolhouse is already handling all the tool related aspects of your code for you.
 
 Feel free to expand this bot's capabilities by adding more sophisticated handling of user inputs and integrating additional tools as needed. Happy coding!
