@@ -2,6 +2,8 @@
 
 Hello, developers! Today, we'll walk through creating a customer support bot using Anthropic's AI and Toolhouse's tool management platform. This bot will assist customers with their product-related queries, but only during specific hours.
 
+https://github.com/user-attachments/assets/8ee3af0f-9b03-4fd9-890c-319386b870b3
+
 > 👋 Here's the thing: adding all the super-powers to the chatbot can be achieved with Toolhouse's SDK and just **3 lines of code**.
 
 To build this AI agent for customer support, we're going to be using 3 tools:
@@ -52,10 +54,13 @@ Next, we define the system message that sets the behavior and constraints for ou
 # Define system message for the AI agent
 system_message = """
         IMPORTANT: Be extremely concise in all your answers. Keep it to 280 characters.
-        You are a great customer support agent for a headphones company that is tasked to help customers. Answer the question as faithfully as you can.
+        You are a great customer support agent for a headphones company that is taked to help customers. Answer the question as faithfully as you can.
         You only reply to questions after 6:00AM PDT. 
         You need to find out what the time is. If a question is asked before 6:00AM PDT, you must reply saying: "Sorry, Can't answer right now, please try again later."
-"""
+        Retrieve knowledge from any source you have and provide the best answer you can.
+        Your main source of knowledge is this file which you can access by using a web scraper, but only scrape it once: https://gist.githubusercontent.com/orliesaurus/be34b6b36e79c154c7a3cb625c448ac3/raw/0bbda12501d866eb405263485d099ae4e1b2db76/faqs_headphones.txt
+        Only respond with the details of the answer, like a real customer support agent would do.
+        """
 ```
 
 ## Processing User Queries
