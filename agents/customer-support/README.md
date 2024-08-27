@@ -2,9 +2,13 @@
 
 Hello, developers! Today, we'll walk through creating a customer support bot using Anthropic's AI and Toolhouse's tool management platform. This bot will assist customers with their product-related queries, but only during specific hours.
 
+> 👋 Here's the thing: adding all the super-powers to the chatbot can be achieved with Toolhouse's SDK and just **3 lines of code**.
+
+## Intro video
 https://github.com/user-attachments/assets/8ee3af0f-9b03-4fd9-890c-319386b870b3
 
-> 👋 Here's the thing: adding all the super-powers to the chatbot can be achieved with Toolhouse's SDK and just **3 lines of code**.
+
+
 
 To build this AI agent for customer support, we're going to be using 3 tools:
 - [Get page contents](https://app.toolhouse.ai/store/scraper): This tools lets us get information from the web, about the product we're selling - some amazing headphones
