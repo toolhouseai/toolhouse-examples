@@ -30,8 +30,8 @@ We'll uses Anthropic for natural language processing, and we'll rely on Toolhous
 ## Setting Up
 First, ensure you have the necessary API keys set as environment variables:
 ```bash
-export ANTHROPIC_API_KEY="your_anthropic_api_key"
-export TOOLHOUSE_API_KEY="your_toolhouse_api_key"
+export ANTHROPIC_KEY="your_anthropic_api_key"
+export TOOLHOUSE_BEARER_TOKEN="your_toolhouse_api_key"
 ```
 ## Initializing the Project
 Make sure you have installed all dependencies and create your virtual environment as explained in the [main README](https://github.com/toolhouseai/toolhouse-examples/blob/main/README.md) of this repo.
