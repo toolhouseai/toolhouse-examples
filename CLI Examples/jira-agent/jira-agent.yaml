@@ -1,0 +1,22 @@
+title: JIRA Agent
+prompt: >-
+  Generate a PR froma project management solution like JIRA or Asana of quality
+  and completeness to close the ticket. 
+
+  You should read the Story, Write the Code, and Push to Github.
+
+
+  Do this:
+
+  1. Read the story by fetching the contents of this URL: {story_url}
+
+  2. Write the Code
+
+  3. Show me the code
+
+  4. Push the code to Github by simulating an API call to httpecho
+vars:
+  story_url: https://tmpfiles.org/dl/28505571/sample_ticket.txt
+public: true
+toolhouse_id: default
+id: 3dfb879e-4042-4014-b81e-7c72acea0380

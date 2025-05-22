@@ -1,0 +1,38 @@
+# Toolhouse Agent Configuration
+# The ID of the agent. Do not change this unless you know what you're doing.
+
+# The name of the agent. This is used for display purposes.
+title: VIP Scout
+
+# The prompt of your agent. You can use variables in the prompt.
+prompt: >-
+  Your task is to find out if some people are internet famous. To do this:
+
+  1. I'm going to give you a list of names
+  2. For each one of these names, perform a web search.
+  3. Get a summary of the information for each person.
+
+  Here's the list of names:
+  {names}
+
+# The variables used in the prompt. You can define default values for these variables.
+# Ensure that the variable names match those used in the prompt.
+vars:
+  names: "Here are the contacts from Daniele's network who work at OpenAI: Romain Huet - Head of Developer Experience (https://www.linkedin.com/in/romainhuet) Lien M - Member of Technical Staff (https://www.linkedin.com/in/lientran15)  Lindsay McCallum Rémy - Communications (https://www.linkedin.com/in/lindsaymccallum)   Would you like Daniele to make an introduction to any of them?"
+
+# The bundle configuration. You can specify a bundle name or a list of MCP servers you want your agent to use.
+# bundle: "default"
+
+# Sets your agent to be public or private. By default, public agents are visible to all users and can be used by anyone.
+# Private agents are only visible to you and can only be used when called with your API Key.
+# Toolhouse Pro users can create private agents that are not visible to other users.
+public: true
+
+# The end user ID. This is used to give the agent context about the user it is interacting with.
+toolhouse_id: "default"
+
+# Schedule configuration. You can specify when the agent should run in cron format.
+# schedule: "0 0 * * *" # This would run the agent every day at midnight
+
+# The RAG configuration. You can specify a RAG folder to use.
+#rag: "rag_folder"
